@@ -7,22 +7,32 @@ import axios from 'axios';
 const GOT_MESSAGES_FROM_SERVER = 'GOT_MESSAGES_FROM_SERVER';
 const WRITE_MESSAGE = 'WRITE_MESSAGE';
 const GOT_NEW_MESSAGE_FROM_SERVER = 'GOT_NEW_MESSAGE_FROM_SERVER';
+const WRTE_NAME = 'WRTE_NAME';
 
 //action creator
 
-export const gotMessagesFromServer = function (messages) {
+ const gotMessagesFromServer = function (messages) {
   return {
     type: GOT_MESSAGES_FROM_SERVER, // be sure to use the constant, not a string literal
     messages: messages
   };
 };
 
-export const writeMessage = function(inputContent) {
+ const writeMessage = function(inputContent) {
   return {
     type: WRITE_MESSAGE,
     newMessageEntry: inputContent
   };
 }
+
+export const writeName = function(name){
+  return {
+    type: WRTE_NAME, 
+    name: name
+  }
+}
+
+
 
 export const gotNewMessageFromServer = function(message) {
   return {
@@ -35,7 +45,8 @@ export const gotNewMessageFromServer = function(message) {
 
 const initialState = {
   messages: [],
-  newMessageEntry: ''
+  newMessageEntry: '', 
+  name: ''
 };
 
 // our "thunk creator"
@@ -77,6 +88,9 @@ const reducer = function(state = initialState, action) {
     case GOT_NEW_MESSAGE_FROM_SERVER:
       return Object.assign({}, state, { messages: state.messages.concat(action.message) });
    
+    case WRTE_NAME:
+      return Object.assign({}, state, {name: action.name})
+      
     default: 
        return state;
   }
