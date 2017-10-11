@@ -13,7 +13,7 @@ export default class NameEntry extends Component {
   }
 
   componentWillUnmount() {
-  	this.unsubscribe();
+  	this.unsubscribe();  
   }
   render() {
    return (
